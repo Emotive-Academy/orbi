@@ -33,13 +33,14 @@ def _missing_requirements(packages: list[str]) -> list[str]:
     return missing
 
 
-_missing = _missing_requirements(EXTERNAL_TEST_REQUIREMENTS)
-if _missing:
-    # Print a concise hint; do not hard-fail so discovery can
-    # still surface the error.
-    pkgs = " ".join(_missing)
-    print(
-        f"[test bootstrap] Missing external packages: {pkgs}.\n"
-        f"Install with: pip install {pkgs}",
-        file=sys.stderr,
-    )
+def check_external_requirements() -> None:
+    _missing = _missing_requirements(EXTERNAL_TEST_REQUIREMENTS)
+    if _missing:
+        # Print a concise hint; do not hard-fail so discovery can
+        # still surface the error.
+        pkgs = " ".join(_missing)
+        print(
+            f"[test bootstrap] Missing external packages: {pkgs}.\n"
+            f"Install with: pip install {pkgs}",
+            file=sys.stderr,
+        )

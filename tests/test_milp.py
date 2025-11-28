@@ -34,9 +34,12 @@ def build_basic_model():
 
 class TestMilp(unittest.TestCase):
     def optimize_and_assert_optimal(self, model):
+        """Optimize model and assert it reaches optimal status."""
         model.optimize()
         self.assertEqual(
-            model.Status, GRB.OPTIMAL
+            model.Status,
+            GRB.OPTIMAL,
+            f"Expected OPTIMAL, got {model.Status}",
         )
         self.assertIsNotNone(model.ObjVal)
 

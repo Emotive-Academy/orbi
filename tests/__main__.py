@@ -1,15 +1,12 @@
-"""Unittest entry point for the orbi test suite.
+"""Unittest entry point for the milp module test suite.
 
 Usage:
-    python -m orbi.test
+    python -m tests
 """
 
 from __future__ import annotations
 
 import unittest
-
-# Ensure package bootstrap side-effects (sys.path, requirement check) run
-from . import EXTERNAL_TEST_REQUIREMENTS  # noqa: F401
 
 
 def main() -> None:

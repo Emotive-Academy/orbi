@@ -8,9 +8,6 @@ from __future__ import annotations
 
 import unittest
 
-# Ensure package bootstrap side-effects (sys.path, requirement check) run
-from . import EXTERNAL_TEST_REQUIREMENTS  # noqa: F401
-
 
 def main() -> None:
     loader = unittest.TestLoader()

@@ -32,13 +32,17 @@ def build_basic_model():
     return m, x, y, z
 
 
-def optimize_and_assert_optimal(model):
-    model.optimize()
-    assert model.Status == GRB.OPTIMAL, f"Expected OPTIMAL, got {model.Status}"
-    assert model.ObjVal is not None
-
-
 class TestMilp(unittest.TestCase):
+    def optimize_and_assert_optimal(self, model):
+        """Optimize model and assert it reaches optimal status."""
+        model.optimize()
+        self.assertEqual(
+            model.Status,
+            GRB.OPTIMAL,
+            f"Expected OPTIMAL, got {model.Status}",
+        )
+        self.assertIsNotNone(model.ObjVal)
+
     def test_variable_creation(self):
         m = Model("var_creation")
         x = m.addVar(lb=0, ub=5, name="x")
@@ -60,7 +64,7 @@ class TestMilp(unittest.TestCase):
         m.setObjective(x + y + 2 * z, GRB.MAXIMIZE)
         m.addConstr(x + 2 * y + 3 * z <= 7, "c1")
         m.addConstr(x + y >= 1, "c2")
-        optimize_and_assert_optimal(m)
+        self.optimize_and_assert_optimal(m)
         self.assertIsNotNone(x.X)
         self.assertIsNotNone(y.X)
         self.assertIsNotNone(z.X)
@@ -74,7 +78,7 @@ class TestMilp(unittest.TestCase):
         c2 = m.addConstr(x + y >= 1, "c2")
         self.assertIsNotNone(c1)
         self.assertIsNotNone(c2)
-        optimize_and_assert_optimal(m)
+        self.optimize_and_assert_optimal(m)
         self.assertIsNotNone(x.X)
         self.assertIsNotNone(y.X)
         self.assertIsNotNone(z.X)

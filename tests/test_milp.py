@@ -98,7 +98,7 @@ class TestMilp(unittest.TestCase):
         m.addConstr(expr_le <= 5, "le")
         m.addConstr(expr_ge >= 1, "ge")
         m.addConstr(expr_eq.equals(4), "eq")
-        m.setObjective(z * 1, GRB.MAXIMIZE)
+        m.setObjective(LinExpr(z), GRB.MAXIMIZE)
         m.optimize()
         if m.Status == GRB.OPTIMAL:
             self.assertIsInstance(z.X, (int, float))
@@ -138,7 +138,7 @@ class TestMilp(unittest.TestCase):
         m = Model("params")
         m.setParam("TimeLimit", 0.01)
         x = m.addVar(name="x")
-        m.setObjective(x * 1, GRB.MAXIMIZE)
+        m.setObjective(LinExpr(x), GRB.MAXIMIZE)
         m.optimize()
         self.assertIn(
             m.Status,
@@ -148,7 +148,7 @@ class TestMilp(unittest.TestCase):
     def test_unbounded_model(self):
         m = Model("unbounded")
         x = m.addVar(lb=0, ub=GRB.INFINITY, name="x")
-        m.setObjective(x * 1, GRB.MAXIMIZE)
+        m.setObjective(LinExpr(x), GRB.MAXIMIZE)
         m.optimize()
         self.assertIn(m.Status, (GRB.UNBOUNDED, GRB.OPTIMAL))
 

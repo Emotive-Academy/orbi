@@ -1,6 +1,4 @@
 import unittest
-import sys
-from pathlib import Path
 
 
 from milp import Model, GRB, LinExpr, Var, OpenGurobiError  # noqa: E402
@@ -70,8 +68,9 @@ class TestMilp(unittest.TestCase):
     def test_infeasible_model_status(self):
         m = Model("infeasible")
         x = m.addVar(vtype=GRB.BINARY, name="x")
-        m.addConstr(x <= 0, "c1")
-        m.addConstr(x >= 1, "c2")
+        # Wrap x in LinExpr so comparison operators are supported
+        m.addConstr(LinExpr(x) <= 0, "c1")
+        m.addConstr(LinExpr(x) >= 1, "c2")
         m.setObjective(LinExpr(x), GRB.MAXIMIZE)
         m.optimize()
         self.assertEqual(m.Status, GRB.INFEASIBLE)
@@ -102,7 +101,7 @@ class TestMilp(unittest.TestCase):
         m.optimize()
         if m.Status == GRB.OPTIMAL:
             self.assertIsInstance(z.X, (int, float))
-            self.assertAlmostEqual(z.X, 2)
+            self.assertAlmostEqual(float(z.X), 2.0, places=5)  # type: ignore
             self.assertIn(x.X, (0, 1))
             self.assertIn(y.X, (0, 1))
 

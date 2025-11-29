@@ -44,3 +44,6 @@ def check_external_requirements() -> None:
             f"Install with: pip install {pkgs}",
             file=sys.stderr,
         )
+
+# Check for required external packages at import time
+check_external_requirements()

@@ -44,4 +44,3 @@ def check_external_requirements() -> None:
             f"Install with: pip install {pkgs}",
             file=sys.stderr,
         )
-

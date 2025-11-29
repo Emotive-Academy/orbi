@@ -39,7 +39,7 @@ jobs:
           pip install .
 
       - name: Run tests
-        run: pytest ./tests
+        run: python -m unittest discover tests
 
       - name: Lint code
         run: flake8 src/

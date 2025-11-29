@@ -128,6 +128,7 @@ class TestMilp(unittest.TestCase):
         y = m.addVar(name="y")
         expr = 2 * x + 3 * y - 5
         self.assertIsInstance(expr, LinExpr)
+        self.assertEqual(len(expr.terms), 2)
         coeffs = {v.VarName: c for v, c in expr.terms.items()}
         self.assertEqual(coeffs.get("x"), 2)
         self.assertEqual(coeffs.get("y"), 3)

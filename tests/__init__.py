@@ -45,5 +45,3 @@ def check_external_requirements() -> None:
             file=sys.stderr,
         )
 
-# Check for required external packages at import time
-check_external_requirements()

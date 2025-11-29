@@ -74,9 +74,9 @@ class TestMilp(unittest.TestCase):
     def test_infeasible_model_status(self):
         m = Model("infeasible")
         x = m.addVar(vtype=GRB.BINARY, name="x")
-        m.addConstr(x + 0 <= 0, "c1")
-        m.addConstr(x + 0 >= 1, "c2")
-        m.setObjective(x * 1, GRB.MAXIMIZE)
+        m.addConstr(x <= 0, "c1")
+        m.addConstr(x >= 1, "c2")
+        m.setObjective(LinExpr(x), GRB.MAXIMIZE)
         m.optimize()
         self.assertEqual(m.Status, GRB.INFEASIBLE)
 

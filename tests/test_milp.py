@@ -7,21 +7,7 @@ _SRC = _ROOT / "src"
 if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
-try:  # Primary import
-    from milp import Model, GRB, LinExpr, Var, OpenGurobiError  # noqa: E402
-except ModuleNotFoundError:  # Fallback explicit loading
-    import importlib.util
-    _MILP_FILE = _SRC / "milp.py"
-    spec = importlib.util.spec_from_file_location("milp", _MILP_FILE)
-    if not spec or not spec.loader:
-        raise
-    milp_mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(milp_mod)
-    Model = milp_mod.Model
-    GRB = milp_mod.GRB
-    LinExpr = milp_mod.LinExpr
-    Var = milp_mod.Var
-    OpenGurobiError = milp_mod.OpenGurobiError
+from milp import Model, GRB, LinExpr, Var, OpenGurobiError  # noqa: E402
 
 
 def build_basic_model():

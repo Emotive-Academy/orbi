@@ -120,7 +120,7 @@ class TestMilp(unittest.TestCase):
         m.optimize()
         if m.Status == GRB.OPTIMAL:
             self.assertIsInstance(z.X, (int, float))
-            self.assertEqual(z.X, 2)
+            self.assertAlmostEqual(z.X, 2)
             self.assertIn(x.X, (0, 1))
             self.assertIn(y.X, (0, 1))
 

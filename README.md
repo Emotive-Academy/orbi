@@ -1,6 +1,6 @@
-# orbi
+# LibreMIP 
 
-`orbi` (Open-Source Gurobi-like API)
+`LibreMIP` (Open-Source Gurobi-like API)
 
 A proof-of-concept Python package that provides a Gurobi-like modeling API (gurobipy) using Google OR-Tools as the backend solver.
 

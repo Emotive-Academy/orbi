@@ -1,4 +1,4 @@
-# LibreMIP 
+# LibreMIP
 
 `LibreMIP` (Open-Source Gurobi-like API)
 

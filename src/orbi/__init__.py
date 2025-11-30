@@ -31,13 +31,14 @@ except PackageNotFoundError:
 
 
 # Re-export primary symbols from the internal implementation module
-from .milp import Model, GRB, Var, LinExpr  # noqa: E402,F401
+from .milp import Model, GRB, Var, LinExpr, OpenGurobiError  # noqa: E402,F401
 
 
 __all__ = [
     "Model",
     "GRB",
     "Var",
+    "OpenGurobiError",
     "LinExpr",
     "__version__",
 ]

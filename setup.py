@@ -6,6 +6,6 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 if __name__ == "__main__":
     setup(
-        name="orbi",
+        name="LibreMIP",
         include_package_data=True,
     )

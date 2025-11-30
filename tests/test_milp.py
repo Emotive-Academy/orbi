@@ -1,7 +1,7 @@
 import unittest
 
 
-from milp import Model, GRB, LinExpr, Var, OpenGurobiError
+from orbi.milp import Model, GRB, LinExpr, Var, OpenGurobiError
 
 
 def build_basic_model():

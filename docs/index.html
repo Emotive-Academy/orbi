@@ -48,8 +48,16 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                             <span class="title">example.py</span>
+                            <div class="example-selector">
+                                <select id="example-select">
+                                    <option value="basic">Basic MILP</option>
+                                    <option value="infeasible">Infeasible</option>
+                                    <option value="unbounded">Unbounded</option>
+                                    <option value="knapsack">Knapsack</option>
+                                </select>
+                            </div>
                         </div>
-                        <pre><code class="language-python" id="code-block">from orbi.milp import Model, GRB
+                        <pre><code class="language-python" id="code-block" contenteditable="true" spellcheck="false">from orbi.milp import Model, GRB
 
 # Create a new model
 m = Model("my_milp_model")

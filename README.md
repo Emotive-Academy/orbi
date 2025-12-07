@@ -41,7 +41,7 @@ The following code (from opensource_gurobi_api.py) demonstrates how to use the w
 
 ```python
 # Import the wrapper classes
-from milp import Model, GRB
+from orbi.milp import Model, GRB
 
 print("--- Testing Open-Source Gurobi-like API ---")
 # Create a new model

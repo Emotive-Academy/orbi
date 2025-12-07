@@ -12,6 +12,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 </head>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+
 
 <body>
 
@@ -96,7 +98,8 @@ for v in m.getVars():
                             <span class="title">Terminal</span>
                         </div>
                         <div id="output" class="output-content">
-                            <span class="prompt">$</span> python example.py<br>
+                            <div id="loading-indicator">Initializing Python Environment (Pyodide)...</div>
+                            <span class="prompt">$</span>
                             <span class="cursor">_</span>
                         </div>
                     </div>

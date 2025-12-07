@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibreMIP - Open Source Gurobi-like API</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">LibreMIP</div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#demo">Live Demo</a>
+                <a href="https://github.com/Emotive-Academy/orbi" target="_blank" class="github-link">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Gurobi-like syntax.<br>Open Source power.</h1>
+                <p class="subtitle">A lightweight Python wrapper bringing the expressive Gurobi API to Google OR-Tools.
+                </p>
+                <div class="cte-group">
+                    <a href="#demo" class="btn primary">Try Interactive Demo</a>
+                    <a href="https://github.com/Emotive-Academy/orbi" class="btn secondary">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="demo-section">
+            <div class="container">
+                <div class="demo-grid">
+                    <div class="code-editor">
+                        <div class="window-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="title">example.py</span>
+                        </div>
+                        <pre><code class="language-python" id="code-block">from orbi.milp import Model, GRB
+
+# Create a new model
+m = Model("my_milp_model")
+
+# Create variables
+x = m.addVar(vtype=GRB.BINARY, name="x")
+y = m.addVar(vtype=GRB.BINARY, name="y")
+z = m.addVar(vtype=GRB.INTEGER, lb=0, ub=10, name="z")
+
+# Set objective: Maximize x + y + 2z
+m.setObjective(x + y + 2 * z, GRB.MAXIMIZE)
+
+# Add constraints
+m.addConstr(x + 2 * y + 3 * z <= 4, "c1")
+m.addConstr(x + y >= 1, "c2")
+
+# Optimize
+m.optimize()
+
+# Print results
+print(f"Objective Value: {m.ObjVal}")
+for v in m.getVars():
+    print(f"{v.VarName} = {v.X}")</code></pre>
+                        <button id="run-btn" class="run-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            Run Model
+                        </button>
+                    </div>
+
+                    <div class="console-output">
+                        <div class="window-header">
+                            <span class="title">Terminal</span>
+                        </div>
+                        <div id="output" class="output-content">
+                            <span class="prompt">$</span> python example.py<br>
+                            <span class="cursor">_</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Why LibreMIP?</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Familiar Syntax</h3>
+                        <p>Write constraints algebraically, just like in Gurobi. No need to learn a new verbose API.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Zero Cost</h3>
+                        <p>Powered by Google OR-Tools and CBC. Completely free and open source (MIT/Apache).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Lightweight</h3>
+                        <p>A single-file wrapper. Easy to include, modify, and understand.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 LibreMIP Project. Open Source.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
